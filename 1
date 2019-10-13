@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+	int n,i,t,d,j=0;
+	int *a;
+	printf("Введите размер последовательности\n");
+	scanf("%d",&n);
+	d=n/2;
+	if (n <= 0)
+		printf("Данные введены некорректно");
+	else {
+	    printf("Введите последовательность\n");
+		a = (int *)malloc(n * sizeof(int));
+		for (i=0; i < n; i++) 
+			scanf("%d",&a[i]);
+		while(d!=0) {
+		    for (i=0; i<n-d; i++)
+		    if (a[i]>a[i+d]) {
+		        j=i;
+		        for (j;j>-1;j-=d) 
+		        if (a[j]>a[j+d]) {
+		        t=a[j+d];
+		        a[j+d]=a[j];
+		        a[j]=t;
+		        }
+		        else j=0;
+		    }
+		    d=d/2;
+		}
+		for (i=0; i < n ; i++)
+			printf("%d ",a[i]);
+		free(a);
+	}
+	return 0;
+}
